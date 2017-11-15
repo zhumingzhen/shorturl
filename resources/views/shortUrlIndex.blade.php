@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>短链,短网址,长链转短链</title>
-    <link rel="stylesheet" href="{{ asset('/css/index.css') }}">
+    <link rel="stylesheet" href="/css/index.css">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{ asset('/js/clipboard.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/index.js') }}" charset="UTF-8"></script>
+    <script src="/js/clipboard.min.js"></script>
+    <script type="text/javascript" src="/js/index.js" charset="UTF-8"></script>
 </head>
 <body>
 <div class="s-create">
