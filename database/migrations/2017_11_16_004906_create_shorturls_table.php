@@ -17,7 +17,6 @@ class CreateShorturlsTable extends Migration
             $table->increments('id');
             $table->string('long_url',256);
             $table->string('short_url',8);
-            $table->timestamp('creat_time');
             $table->string('count',8);
             $table->timestamps();
         });
