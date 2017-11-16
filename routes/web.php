@@ -16,3 +16,4 @@
 });*/
 
 Route::get('/', 'ShortUrlController@index');
+Route::get('/longtoshort', 'ShortUrlController@longtoshort');

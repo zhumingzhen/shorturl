@@ -14,7 +14,7 @@ $(document).ready(function(){
             //Ajax调用处理
             $.ajax({
                 type: "post",
-                url: "longtoshort.php",
+                url: "/longtoshort",
                 // data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
                 data: {"lUrl":lUrl},
                 cache: false,
