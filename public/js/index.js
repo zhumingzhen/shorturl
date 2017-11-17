@@ -4,7 +4,7 @@
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
-            'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     });
     $("#lBtn").click(function(){

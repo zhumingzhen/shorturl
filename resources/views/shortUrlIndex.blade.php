@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="_token" content="{{ csrf_token() }}"/>
     <title>短链,短网址,长链转短链</title>
     <link rel="stylesheet" href="/css/index.css">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
