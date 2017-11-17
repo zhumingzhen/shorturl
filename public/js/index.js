@@ -2,6 +2,11 @@
  * Created by Administrator on 2017/11/15.
  */
 $(document).ready(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')
+        }
+    });
     $("#lBtn").click(function(){
         var lUrl = $("#lUrl").val();
         //var reg=/^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
@@ -16,7 +21,7 @@ $(document).ready(function(){
                 type: "post",
                 url: "http://2dw.win/l/longtoshort",
                 // data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
-                data: {"lUrl":lUrl,"_token":"{{csrf_token()}}"},
+                data: {"lUrl":lUrl},
                 cache: false,
                 async : false,
                 dataType: "json",
