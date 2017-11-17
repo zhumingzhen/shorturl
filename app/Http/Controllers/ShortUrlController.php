@@ -21,7 +21,7 @@ class ShortUrlController extends Controller
         $randstr = $this->getrandomstring(5);
 
         // 查询随机数是否已存在
-        $short_is_having = Shorturl::where('short_url',$randstr)->get();
+        $short_is_having = Shorturl::where('short_url',$randstr)->first();
 
         if (!$short_is_having->isEmpty()) {
             // 随机数已存在
@@ -29,8 +29,7 @@ class ShortUrlController extends Controller
             return $res;
         }else{
             // 查询长链是否已存在
-            $long_is_having = Shorturl::where('long_url',$lUrl)->get();
-            return $long_is_having;exit;
+            $long_is_having = Shorturl::where('long_url',$lUrl)->first();
             if (!$long_is_having->isEmpty()) {
                 // 长链已存在
                 $res = array('code'=>200,'data'=>'http://2dw.win/'.$long_is_having['short_url'],'msg'=>'长链已存在,可复制使用。');
