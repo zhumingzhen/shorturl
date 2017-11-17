@@ -22,7 +22,7 @@
     <!-- 作者 -->
     <div class="author">
         <a href="http://51growup.com" target="_blank">51growup.com-朱明振</a>
-        <a href="javascript:" style="display: block;">© 2017 2dw.win V1.1</a>
+        <a href="javascript:" style="display: block;font-size: 14px;margin-top: 5px;">© 2017 2dw.win V1.1</a>
     </div>
 </div>
 </body>
