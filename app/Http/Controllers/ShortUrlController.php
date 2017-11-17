@@ -38,6 +38,7 @@ class ShortUrlController extends Controller
             //准备SQL语句
             $save['short_url']=$randstr;
             $save['long_url']=$lUrl;
+            $save['count']=1;
             $createRes = Shorturl::create($save);  // 如果save失败，返回false；如果成功，返回model。
 
             if ($createRes != false) {
