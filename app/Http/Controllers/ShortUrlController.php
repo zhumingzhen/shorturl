@@ -30,6 +30,7 @@ class ShortUrlController extends Controller
         }else{
             // 查询长链是否已存在
             $long_is_having = Shorturl::where('long_url',$lUrl)->get();
+            return $long_is_having;exit;
             if (!$long_is_having->isEmpty()) {
                 // 长链已存在
                 $res = array('code'=>200,'data'=>'http://2dw.win/'.$long_is_having['short_url'],'msg'=>'长链已存在,可复制使用。');
