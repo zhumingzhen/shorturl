@@ -20,6 +20,8 @@ class ShortUrlController extends Controller
         // 获取短地址
         $randstr = $this->getrandomstring(5);
 
+        echo $randstr;exit;
+
         // 查询随机数是否已存在
         $short_is_having = Shorturl::where('short_url',$randstr)->get();
 
