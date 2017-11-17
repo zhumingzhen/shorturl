@@ -16,8 +16,6 @@ class ShortUrlController extends Controller
 
     public function longtoshort(Request $request)
     {
-        echo 1212;exit;
-        /*
         $lUrl = trim($request->get('lUrl'));
         // 获取短地址
         $randstr = $this->getrandomstring(5);
@@ -49,7 +47,6 @@ class ShortUrlController extends Controller
             }
             return $res;
         }
-        */
     }
 
     public function getrandomstring($len,$chars=null){
