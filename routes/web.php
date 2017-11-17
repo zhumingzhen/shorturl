@@ -17,4 +17,6 @@
 
 Route::get('/', 'ShortUrlController@index');
 
+Route::any('/{short}', 'ShortUrlController@shorttolong');
+
 Route::any('/l/longtoshort', 'ShortUrlController@longtoshort');

@@ -50,6 +50,11 @@ class ShortUrlController extends Controller
         }
     }
 
+    public function shorttolong($short)
+    {
+        dd($short);
+    }
+
     public function getrandomstring($len,$chars=null){
         if(is_null($chars)){
             $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
