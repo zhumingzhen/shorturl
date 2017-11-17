@@ -16,7 +16,7 @@
     <input type="submit" class="l-btn" id="lBtn" value="生成短链">
     <!-- 短链展示 -->
     <div class="s-result">
-        <span class="s-url" id="sUrl">http://2dw.win/s/url</span>
+        <span class="s-url" id="sUrl">http://2dw.win/url</span>
         <button class="copy-s-url copy" id="copySUrl" data-clipboard-text="http://2dw.win/s/url">复制短链</button>
     </div>
     <!-- 作者 -->
