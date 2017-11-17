@@ -77,4 +77,9 @@ class ShortUrlController extends Controller
         }
         return $str;
     }
+
+    public function add()
+    {
+        
+    }
 }

@@ -20,3 +20,8 @@ Route::get('/', 'ShortUrlController@index');
 Route::get('/{short}', 'ShortUrlController@shorttolong');
 
 Route::post('/l/longtoshort', 'ShortUrlController@longtoshort');
+
+// 版本更新说明
+Route::get('/v', function () {
+    return view('versions');
+});
