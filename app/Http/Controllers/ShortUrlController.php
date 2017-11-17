@@ -52,7 +52,18 @@ class ShortUrlController extends Controller
 
     public function shorttolong($short)
     {
-        dd($short);
+        // 短链转长链
+        $short_to_long = Shorturl::where('short_url',$short)->first();
+        if ($short_to_long){
+            // 有短链记录跳转
+            $lUrl = $short_to_long['long_url'];
+            header("Location: $lUrl");
+        }else{
+            // 没有记录，跳转短链生成页面
+            $url = 'http://2dw.win';
+            echo "<script> alert('未找到响应链接');location.href='$url';</script>";
+        }
+
     }
 
     public function getrandomstring($len,$chars=null){
