@@ -16,7 +16,7 @@ $(document).ready(function(){
                 type: "post",
                 url: "http://2dw.win/l/longtoshort",
                 // data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
-                data: {"lUrl":lUrl},
+                data: {"lUrl":lUrl,"_token":"{{csrf_token()}}"},
                 cache: false,
                 async : false,
                 dataType: "json",
