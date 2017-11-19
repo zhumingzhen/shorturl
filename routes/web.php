@@ -19,7 +19,7 @@ Route::get('/', 'ShortUrlController@index');
 
 // 版本更新说明
 Route::get('/v', function () {
-    return view('welcome');
+    return view('versions');
 });
 
 Route::get('/{short}', 'ShortUrlController@shorttolong');
