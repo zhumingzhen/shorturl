@@ -7,7 +7,7 @@
         <title>版本更新</title>
     </head>
     <body>
-        <div style="width: 800px;text-align: center;background-color: #00B83F;color: #fff;">
+        <div style="width: 800px;margin: 0 auto;text-align: center;background-color: #00B83F;color: #fff;border-radius: 10px;">
             <div>
                 <h4>2017-10-13 v0.8</h4>
                 短链基础版可用(原生)
