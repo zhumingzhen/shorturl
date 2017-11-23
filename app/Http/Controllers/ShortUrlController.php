@@ -57,7 +57,6 @@ class ShortUrlController extends Controller
         if ($short_to_long){
             // 有短链增加访问次数
             $count = $short_to_long['count']+1;
-            dd($count);
             Shorturl::where('short_url',$short)->update(['count' => $count]);
             // 有短链记录跳转
             $lUrl = $short_to_long['long_url'];
