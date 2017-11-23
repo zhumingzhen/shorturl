@@ -54,7 +54,7 @@ class ShortUrlController extends Controller
     public function shorttolong($short)
     {
 
-        $reader = new Reader('/usr/local/share/GeoIP/GeoIP2-City.mmdb');
+        $reader = new Reader('/GeoLite2-City.mmdb');
         $record = $reader->city('128.101.101.101');
 
         print($record->country->isoCode . "\n"); // 'US'
