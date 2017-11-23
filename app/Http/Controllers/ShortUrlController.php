@@ -55,7 +55,7 @@ class ShortUrlController extends Controller
     {
 
         $reader = new Reader('/data/wwwroot/default/shorturl/public/GeoIP2-City.mmdb');
-        $record = $reader->city('128.101.101.101');
+        $record = $reader->city('101.242.122.204');
 
         print($record->country->isoCode . "\n"); // 'US'
         print($record->country->name . "\n"); // 'United States'
