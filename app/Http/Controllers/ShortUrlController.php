@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Shorturl;
+use GeoIp2\Database\Reader;
 
 
 class ShortUrlController extends Controller
@@ -52,6 +53,34 @@ class ShortUrlController extends Controller
 
     public function shorttolong($short)
     {
+
+        $reader = new Reader('/usr/local/share/GeoIP/GeoIP2-City.mmdb');
+        $record = $reader->city('128.101.101.101');
+
+        print($record->country->isoCode . "\n"); // 'US'
+        print($record->country->name . "\n"); // 'United States'
+        print($record->country->names['zh-CN'] . "\n"); // '美国'
+
+        print($record->mostSpecificSubdivision->name . "\n"); // 'Minnesota'
+        print($record->mostSpecificSubdivision->isoCode . "\n"); // 'MN'
+
+        print($record->city->name . "\n"); // 'Minneapolis'
+
+        print($record->postal->code . "\n"); // '55455'
+
+        print($record->location->latitude . "\n"); // 44.9733
+        print($record->location->longitude . "\n"); // -93.2323
+
+        dd(1);
+
+
+
+
+
+
+
+
+
         // 短链转长链
         $short_to_long = Shorturl::where('short_url',$short)->first();
         if ($short_to_long){
