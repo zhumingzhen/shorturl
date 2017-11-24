@@ -71,6 +71,7 @@ class ShortUrlController extends Controller
 //        $browser = $this->get_broswer();  // 获取浏览器信息 带具体版本
 
         $os = $this->get_os();  // 获取系统信息
+        echo PHP_OS;exit;
         dd($os);
 
 
