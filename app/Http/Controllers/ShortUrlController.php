@@ -60,7 +60,7 @@ class ShortUrlController extends Controller
 
         $city = $this->getCityByIp($ip);   // 根据ip 获取城市 可以考虑换 ip138
 
-        echo $ip;
+        $city = $this->findCityByIp($ip);
         dd($city);
 
 
@@ -83,6 +83,12 @@ class ShortUrlController extends Controller
         */
 
 
+    }
+
+    //根据ip获取城市、网络运营商等信息
+    public function findCityByIp($ip){
+        $data = file_get_contents('http://ip.taobao.com/service/getIpInfo.php?ip='.$ip);
+        return json_decode($data,$assoc=true);
     }
 
     //获取用户浏览器类型
