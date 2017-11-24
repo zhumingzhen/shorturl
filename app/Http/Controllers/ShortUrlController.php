@@ -68,8 +68,8 @@ class ShortUrlController extends Controller
 //        print($record->location->longitude . "\n"); // -93.2323
 
         print($record->country->names['zh-CN'] . "\n"); // '美国'
-        print(($record->mostSpecificSubdivision->name)['zh-CN'] . "\n"); // 'Minnesota'
-//        print($record->city->name['zh-CN'] . "\n"); // 'Minneapolis'
+        print($record->mostSpecificSubdivision->names['zh-CN'] . "\n"); // 'Minnesota'
+        print($record->city->names['zh-CN'] . "\n"); // 'Minneapolis'
 
 
 
