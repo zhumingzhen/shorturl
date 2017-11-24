@@ -64,7 +64,6 @@ class ShortUrlController extends Controller
         $uvcookie = $this->getuvCookie($ip);  // 获取统计uv参数
 
         $city = $this->getCityByIp($ip);   // 根据ip 获取城市 可以考虑换 ip138
-
 //        $city = $this->findCityByIp($ip);  // 根据ip 获取城市 taobao 带运营商
 
         $browser = $this->getBrowser();  // 获取浏览器信息
@@ -103,6 +102,7 @@ class ShortUrlController extends Controller
      */
     public function get_os(){
         $agent = $_SERVER['HTTP_USER_AGENT'];
+        dd($agent);exit;
         $os = false;
 
         if(strpos($agent, 'iPod')) {
