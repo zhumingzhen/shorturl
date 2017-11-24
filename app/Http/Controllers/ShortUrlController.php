@@ -67,12 +67,12 @@ class ShortUrlController extends Controller
 //        print($record->location->latitude . "\n"); // 44.9733
 //        print($record->location->longitude . "\n"); // -93.2323
 
-        print($record->country->names['zh-CN'] . "\n"); // '美国'
-        print($record->mostSpecificSubdivision->names['zh-CN'] . "\n"); // 'Minnesota'
-        print($record->city->names['zh-CN'] . "\n"); // 'Minneapolis'
+        print($record->country->names['zh-CN'] . "\n"); // '国家'
+        print($record->mostSpecificSubdivision->names['zh-CN'] . "\n"); // '省份'
+        print($record->city->names['zh-CN'] . "\n"); // '城市'
 
 
-        dd('ok');
+        dd($this->getIp());
 
 
 
@@ -114,5 +114,20 @@ class ShortUrlController extends Controller
     public function add()
     {
         
+    }
+
+    public function getIp()
+    {
+        if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown"))
+            $ip = getenv("HTTP_CLIENT_IP");
+        else if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown"))
+            $ip = getenv("HTTP_X_FORWARDED_FOR");
+        else if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown"))
+            $ip = getenv("REMOTE_ADDR");
+        else if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown"))
+            $ip = $_SERVER['REMOTE_ADDR'];
+        else
+            $ip = "unknown";
+        return($ip);
     }
 }
