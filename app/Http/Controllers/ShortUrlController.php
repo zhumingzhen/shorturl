@@ -214,6 +214,14 @@ class ShortUrlController extends Controller
         else if (preg_match('/offline/i', $agent))
         {
             $os = 'offline';
+        } elseif(strpos($agent, 'ipod')) {
+            $os = 'ipod';
+        } elseif(strpos($agent, 'ipad')) {
+            $os = 'ipad';
+        } elseif(strpos($agent, 'iphone')) {
+            $os = 'iphone';
+        } elseif (strpos($agent, 'android')) {
+            $os = 'android';
         }
         else
         {
@@ -253,6 +261,7 @@ class ShortUrlController extends Controller
     }
 
     /**
+     * 获取客户端浏览器信息 添加win10 edge浏览器判断
      * 获取浏览器信息带具体版本
      * @return string
      */
