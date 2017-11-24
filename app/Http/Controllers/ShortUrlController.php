@@ -59,7 +59,7 @@ class ShortUrlController extends Controller
 
 //        print($record->country->isoCode . "\n"); // 'US'
         print($record->country->name . "\n"); // 'United States'
-//        print($record->country->names['zh-CN'] . "\n"); // '美国'
+        print($record->country->names['zh-CN'] . "\n"); // '美国'
 
         print($record->mostSpecificSubdivision->name . "\n"); // 'Minnesota'
 //        print($record->mostSpecificSubdivision->isoCode . "\n"); // 'MN'
@@ -71,7 +71,6 @@ class ShortUrlController extends Controller
 //        print($record->location->latitude . "\n"); // 44.9733
 //        print($record->location->longitude . "\n"); // -93.2323
 
-        dd(1);
 
 
 
@@ -80,7 +79,7 @@ class ShortUrlController extends Controller
 
 
 
-
+        /*
         // 短链转长链
         $short_to_long = Shorturl::where('short_url',$short)->first();
         if ($short_to_long){
@@ -95,6 +94,8 @@ class ShortUrlController extends Controller
             $url = 'http://2dw.win';
             echo "<script> alert('未找到响应链接');location.href='$url';</script>";
         }
+        */
+
 
     }
 
