@@ -55,26 +55,11 @@ class ShortUrlController extends Controller
     {
         $ip = $this->getIp();  // 获取客户端ip
 
-        $uvcookie = $this->getuvCookie($ip);
+        $uvcookie = $this->getuvCookie($ip);  // 获取统计uv参数
 
-        echo $uvcookie;exit;
+        $city = $this->getCityByIp($ip);
 
-        $reader = new Reader('/data/wwwroot/default/shorturl/public/GeoIP2-City.mmdb');
-        $record = $reader->city($ip);
-
-//        print($record->country->isoCode . "\n"); // 'US'
-//        print($record->country->name . "\n"); // 'United States'
-//        print($record->country->names['zh-CN'] . "\n"); // '美国'
-//        print($record->mostSpecificSubdivision->name . "\n"); // 'Minnesota'
-//        print($record->mostSpecificSubdivision->isoCode . "\n"); // 'MN'
-//        print($record->city->name . "\n"); // 'Minneapolis'
-//        print($record->postal->code . "\n"); // '55455'
-//        print($record->location->latitude . "\n"); // 44.9733
-//        print($record->location->longitude . "\n"); // -93.2323
-
-        print($record->country->names['zh-CN'] . "\n"); // '国家'
-        print($record->mostSpecificSubdivision->names['zh-CN'] . "\n"); // '省份'
-        print($record->city->names['zh-CN'] . "\n"); // '城市'
+        dd($city);
 
 
 
@@ -95,6 +80,34 @@ class ShortUrlController extends Controller
         }
         */
 
+
+    }
+
+    public function getCityByIp($ip)
+    {
+        $reader = new Reader('/data/wwwroot/default/shorturl/public/GeoIP2-City.mmdb');
+        $record = $reader->city($ip);
+
+//        print($record->country->isoCode . "\n"); // 'US'
+//        print($record->country->name . "\n"); // 'United States'
+//        print($record->country->names['zh-CN'] . "\n"); // '美国'
+//        print($record->mostSpecificSubdivision->name . "\n"); // 'Minnesota'
+//        print($record->mostSpecificSubdivision->isoCode . "\n"); // 'MN'
+//        print($record->city->name . "\n"); // 'Minneapolis'
+//        print($record->postal->code . "\n"); // '55455'
+//        print($record->location->latitude . "\n"); // 44.9733
+//        print($record->location->longitude . "\n"); // -93.2323
+
+//        print($record->country->names['zh-CN'] . "\n"); // '国家'
+//        print($record->mostSpecificSubdivision->names['zh-CN'] . "\n"); // '省份'
+//        print($record->city->names['zh-CN'] . "\n"); // '城市'
+
+        $country = $record->country->names['zh-CN'];
+        $province = $record->mostSpecificSubdivision->names['zh-CN'];
+        $city = $record->city->names['zh-CN'];
+        $ResCity = ['country'=>$country,'province'=>$province,'city'=>$city];
+
+        return $ResCity;
 
     }
 
