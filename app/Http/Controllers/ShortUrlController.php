@@ -57,7 +57,7 @@ class ShortUrlController extends Controller
 
         $expireTime = strtotime(date('Y-m-d',strtotime('+1 day')));
 
-        setcookie($expireTime.'uvCookie',$ip, $expireTime);
+        setcookie('uvCookie',$expireTime.$ip, $expireTime);
 
         echo $_COOKIE['uvCookie'];exit;
 
