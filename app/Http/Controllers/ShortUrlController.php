@@ -55,9 +55,11 @@ class ShortUrlController extends Controller
     {
         $ip = $this->getIp();  // 获取客户端ip
 
-        setcookie('uvCookie',$ip, time()+3600*24);
 
-        echo getcookie('uvCookie');exit;
+        $expireTime = strtotime(date('Y-m-d',strtotime('+1 day')));
+        setcookie('uvCookie',$ip, $expireTime);
+
+        echo $_COOKIE['uvCookie'];exit;
 
         $reader = new Reader('/data/wwwroot/default/shorturl/public/GeoIP2-City.mmdb');
         $record = $reader->city($ip);
