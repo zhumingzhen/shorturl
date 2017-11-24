@@ -53,12 +53,14 @@ class ShortUrlController extends Controller
 
     public function shorttolong($short)
     {
+        // ****** 可以把 访问时间 ip 以及对应 短链记录到文件  每天0点执行定时任务 进行 数据库写入
         $ip = $this->getIp();  // 获取客户端ip
 
         $uvcookie = $this->getuvCookie($ip);  // 获取统计uv参数
 
-        $city = $this->getCityByIp($ip);
+        $city = $this->getCityByIp($ip);   // 根据ip 获取城市 可以考虑换 ip138
 
+        echo $ip;
         dd($city);
 
 
@@ -82,6 +84,24 @@ class ShortUrlController extends Controller
 
 
     }
+
+    //获取用户浏览器类型
+    public function getBrowser(){
+        $agent=$_SERVER["HTTP_USER_AGENT"];
+        if(strpos($agent,'MSIE')!==false || strpos($agent,'rv:11.0')) //ie11判断
+            return "ie";
+        else if(strpos($agent,'Firefox')!==false)
+            return "firefox";
+        else if(strpos($agent,'Chrome')!==false)
+            return "chrome";
+        else if(strpos($agent,'Opera')!==false)
+            return 'opera';
+        else if((strpos($agent,'Chrome')==false)&&strpos($agent,'Safari')!==false)
+            return 'safari';
+        else
+            return 'unknown';
+    }
+
 
     public function getCityByIp($ip)
     {
