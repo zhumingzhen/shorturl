@@ -55,7 +55,7 @@ class ShortUrlController extends Controller
     {
         $ip = $this->getIp();  // 获取客户端ip
 
-        $uvcookie = getuvCookie($ip);
+        $uvcookie = $this->getuvCookie($ip);
 
         echo $uvcookie;exit;
 
