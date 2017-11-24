@@ -55,9 +55,9 @@ class ShortUrlController extends Controller
     {
         $ip = $this->getIp();  // 获取客户端ip
 
-
         $expireTime = strtotime(date('Y-m-d',strtotime('+1 day')));
-        setcookie('uvCookie',$ip, $expireTime);
+
+        setcookie($expireTime.'uvCookie',$ip, $expireTime);
 
         echo $_COOKIE['uvCookie'];exit;
 
