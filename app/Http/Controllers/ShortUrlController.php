@@ -53,9 +53,9 @@ class ShortUrlController extends Controller
 
     public function shorttolong($short)
     {
-
+        $ip = $this->getIp();  // 获取客户端ip
         $reader = new Reader('/data/wwwroot/default/shorturl/public/GeoIP2-City.mmdb');
-        $record = $reader->city('115.29.79.115');
+        $record = $reader->city($ip);
 
 //        print($record->country->isoCode . "\n"); // 'US'
 //        print($record->country->name . "\n"); // 'United States'
@@ -70,12 +70,6 @@ class ShortUrlController extends Controller
         print($record->country->names['zh-CN'] . "\n"); // '国家'
         print($record->mostSpecificSubdivision->names['zh-CN'] . "\n"); // '省份'
         print($record->city->names['zh-CN'] . "\n"); // '城市'
-
-
-        dd($this->getIp());
-
-
-
 
 
 
