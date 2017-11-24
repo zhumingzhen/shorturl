@@ -60,8 +60,10 @@ class ShortUrlController extends Controller
 
         $city = $this->getCityByIp($ip);   // 根据ip 获取城市 可以考虑换 ip138
 
-        $city = $this->findCityByIp($ip);
-        dd($city);
+//        $city = $this->findCityByIp($ip);  // 根据ip 获取城市 taobao 带运营商
+
+        $browser = $this->getBrowser();
+        dd($browser);
 
 
 
