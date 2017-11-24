@@ -70,7 +70,31 @@ class ShortUrlController extends Controller
 //        $browser = $this->get_broswer();  // 获取浏览器信息 带具体版本
 
         $os = $this->get_os();  // 获取系统信息
-        dd($os);
+
+
+
+        if (isset($_SERVER['HTTP_X_UP_CALLING_LINE_ID']))
+        {
+            $getstr2 = $_SERVER['HTTP_X_UP_CALLING_LINE_ID'];
+            echo "<TD ALIGN="CENTER">$getstr2</TD>";
+        }
+        elseif (isset($_SERVER['HTTP_X_UP_SUBNO']))
+        {
+            $str3 = $_SERVER['HTTP_X_UP_SUBNO'];
+            $getstr3 = preg_replace('/(.*)(11[d]{ 9 })(.*)/i','2',$str3);
+            echo "<TD ALIGN="CENTER">$getstr3</TD>";
+        }
+        elseif (isset($_SERVER['DEVICEID']))
+        {
+            Return $_SERVER['DEVICEID'];
+        }
+        else
+        {
+            echo "<TD ALIGN="CENTER">".$_SERVER['DEVICEID']."</TD>";
+        }
+
+
+        dd(21);
 
 
 
@@ -102,7 +126,7 @@ class ShortUrlController extends Controller
      */
     public function get_os(){
         $agent = $_SERVER['HTTP_USER_AGENT'];
-        dd($agent);exit;
+//        dd($agent);
         $os = false;
 
         if(strpos($agent, 'iPod')) {
