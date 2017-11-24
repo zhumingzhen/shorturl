@@ -14,7 +14,11 @@ class ShortUrlController extends Controller
         return view('shortUrlIndex');
     }
 
-
+    /**
+     * 长链转短链
+     * @param Request $request
+     * @return array
+     */
     public function longtoshort(Request $request)
     {
         $lUrl = trim($request->get('lUrl'));
@@ -51,6 +55,7 @@ class ShortUrlController extends Controller
         }
     }
 
+
     public function shorttolong($short)
     {
         // ****** 可以把 访问时间 ip 以及对应 短链记录到文件  每天0点执行定时任务 进行 数据库写入
@@ -60,10 +65,11 @@ class ShortUrlController extends Controller
 
         $city = $this->getCityByIp($ip);   // 根据ip 获取城市 可以考虑换 ip138
 
-        $city = $this->findCityByIp($ip);  // 根据ip 获取城市 taobao 带运营商
+//        $city = $this->findCityByIp($ip);  // 根据ip 获取城市 taobao 带运营商
 
-        $browser = $this->getBrowser();
-        dd($city);
+        $browser = $this->getBrowser();  // 获取浏览器信息
+        $browser = $this->get_broswer();  // 获取浏览器信息
+        dd($browser);
 
 
 
@@ -87,13 +93,20 @@ class ShortUrlController extends Controller
 
     }
 
-    //根据ip获取城市、网络运营商等信息
+    /**
+     * 根据ip获取城市、网络运营商等信息
+     * @param $ip
+     * @return mixed
+     */
     public function findCityByIp($ip){
         $data = file_get_contents('http://ip.taobao.com/service/getIpInfo.php?ip='.$ip);
         return json_decode($data,$assoc=true);
     }
 
-    //获取用户浏览器类型
+    /**
+     * 获取用户浏览器类型
+     * @return string
+     */
     public function getBrowser(){
         $agent=$_SERVER["HTTP_USER_AGENT"];
         if(strpos($agent,'MSIE')!==false || strpos($agent,'rv:11.0')) //ie11判断
@@ -110,7 +123,50 @@ class ShortUrlController extends Controller
             return 'unknown';
     }
 
+    public function get_broswer(){
+        $sys = $_SERVER['HTTP_USER_AGENT'];  //获取用户代理字符串
+        if (stripos($sys, "Firefox/") > 0) {
+            preg_match("/Firefox\/([^;)]+)+/i", $sys, $b);
+            $exp[0] = "Firefox";
+            $exp[1] = $b[1];  //获取火狐浏览器的版本号
+        } elseif (stripos($sys, "Maxthon") > 0) {
+            preg_match("/Maxthon\/([\d\.]+)/", $sys, $aoyou);
+            $exp[0] = "傲游";
+            $exp[1] = $aoyou[1];
+        } elseif (stripos($sys, "MSIE") > 0) {
+            preg_match("/MSIE\s+([^;)]+)+/i", $sys, $ie);
+            $exp[0] = "IE";
+            $exp[1] = $ie[1];  //获取IE的版本号
+        } elseif (stripos($sys, "OPR") > 0) {
+            preg_match("/OPR\/([\d\.]+)/", $sys, $opera);
+            $exp[0] = "Opera";
+            $exp[1] = $opera[1];
+        } elseif(stripos($sys, "Edge") > 0) {
+            //win10 Edge浏览器 添加了chrome内核标记 在判断Chrome之前匹配
+            preg_match("/Edge\/([\d\.]+)/", $sys, $Edge);
+            $exp[0] = "Edge";
+            $exp[1] = $Edge[1];
+        } elseif (stripos($sys, "Chrome") > 0) {
+            preg_match("/Chrome\/([\d\.]+)/", $sys, $google);
+            $exp[0] = "Chrome";
+            $exp[1] = $google[1];  //获取google chrome的版本号
+        } elseif(stripos($sys,'rv:')>0 && stripos($sys,'Gecko')>0){
+            preg_match("/rv:([\d\.]+)/", $sys, $IE);
+            $exp[0] = "IE";
+            $exp[1] = $IE[1];
+        }else {
+            $exp[0] = "未知浏览器";
+            $exp[1] = "";
+        }
+        return $exp[0].'('.$exp[1].')';
+    }
 
+
+    /**
+     * geoip2 根据ip获取 城市
+     * @param $ip
+     * @return array
+     */
     public function getCityByIp($ip)
     {
         $reader = new Reader('/data/wwwroot/default/shorturl/public/GeoIP2-City.mmdb');
@@ -139,6 +195,11 @@ class ShortUrlController extends Controller
 
     }
 
+    /**
+     * 获取统计uv 参数
+     * @param $ip
+     * @return string
+     */
     public function getuvCookie($ip)
     {
         $expireTime = strtotime(date('Y-m-d',strtotime('+1 day')));
@@ -152,6 +213,12 @@ class ShortUrlController extends Controller
         return $uvcookie;
     }
 
+    /**
+     *  获取短链部分
+     * @param $len
+     * @param null $chars
+     * @return string
+     */
     public function getrandomstring($len,$chars=null){
         if(is_null($chars)){
             $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -164,26 +231,27 @@ class ShortUrlController extends Controller
         return $str;
     }
 
-    public function add()
+
+    /**
+     * 获取访客ip
+     * @return array|false|string
+     */
+    public function getIp()
     {
-        
+        if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown"))
+            $ip = getenv("HTTP_CLIENT_IP");
+        else if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown"))
+            $ip = getenv("HTTP_X_FORWARDED_FOR");
+        else if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown"))
+            $ip = getenv("REMOTE_ADDR");
+        else if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown"))
+            $ip = $_SERVER['REMOTE_ADDR'];
+        else
+            $ip = "unknown";
+        return($ip);
     }
 
-//    public function getIp()
-//    {
-//        if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown"))
-//            $ip = getenv("HTTP_CLIENT_IP");
-//        else if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown"))
-//            $ip = getenv("HTTP_X_FORWARDED_FOR");
-//        else if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown"))
-//            $ip = getenv("REMOTE_ADDR");
-//        else if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown"))
-//            $ip = $_SERVER['REMOTE_ADDR'];
-//        else
-//            $ip = "unknown";
-//        return($ip);
-//    }
-
+    /*
     //获取访客ip
     public function getIp()
     {
@@ -202,6 +270,6 @@ class ShortUrlController extends Controller
             }
         }
         return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
-    }
+    }*/
 
 }
