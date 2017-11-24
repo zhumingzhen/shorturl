@@ -55,13 +55,7 @@ class ShortUrlController extends Controller
     {
         $ip = $this->getIp();  // 获取客户端ip
 
-        $expireTime = strtotime(date('Y-m-d',strtotime('+1 day')));
-        $uvcookie = $expireTime.'-'.$ip;
-        if(empty($_COOKIE['uvCookie'])){
-            setcookie('uvCookie',$uvcookie, $expireTime);
-        }else{
-            $uvcookie = $_COOKIE['uvCookie'];
-        }
+        $uvcookie = getuvCookie($ip);
 
         echo $uvcookie;exit;
 
@@ -102,6 +96,19 @@ class ShortUrlController extends Controller
         */
 
 
+    }
+
+    public function getuvCookie($ip)
+    {
+        $expireTime = strtotime(date('Y-m-d',strtotime('+1 day')));
+        $uvcookie = $expireTime.'-'.$ip;
+        if(empty($_COOKIE['uvCookie'])){
+            setcookie('uvCookie',$uvcookie, $expireTime);
+        }else{
+            $uvcookie = $_COOKIE['uvCookie'];
+        }
+
+        return $uvcookie;
     }
 
     public function getrandomstring($len,$chars=null){
