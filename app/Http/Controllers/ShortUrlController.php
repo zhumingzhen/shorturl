@@ -105,13 +105,13 @@ class ShortUrlController extends Controller
         $agent = $_SERVER['HTTP_USER_AGENT'];
         $os = false;
 
-        if(strpos($agent, 'ipod')) {
+        if(strpos($agent, 'iPod')) {
             $os = 'ipod';
-        } elseif(strpos($agent, 'ipad')) {
+        }else if(strpos($agent, 'iPad')) {
             $os = 'ipad';
-        } elseif(strpos($agent, 'iphone')) {
+        }else if(strpos($agent, 'iPhone')) {
             $os = 'iphone';
-        } elseif (strpos($agent, 'android')) {
+        }else if (strpos($agent, 'Android')) {
             $os = 'android';
         }else if (preg_match('/win/i', $agent) && strpos($agent, '95'))
         {
