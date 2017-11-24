@@ -58,18 +58,18 @@ class ShortUrlController extends Controller
         $record = $reader->city('115.29.79.115');
 
 //        print($record->country->isoCode . "\n"); // 'US'
-        print($record->country->name . "\n"); // 'United States'
-        print($record->country->names['zh-CN'] . "\n"); // '美国'
-
-        print($record->mostSpecificSubdivision->name . "\n"); // 'Minnesota'
+//        print($record->country->name . "\n"); // 'United States'
+//        print($record->country->names['zh-CN'] . "\n"); // '美国'
+//        print($record->mostSpecificSubdivision->name . "\n"); // 'Minnesota'
 //        print($record->mostSpecificSubdivision->isoCode . "\n"); // 'MN'
-
-        print($record->city->name . "\n"); // 'Minneapolis'
-
+//        print($record->city->name . "\n"); // 'Minneapolis'
 //        print($record->postal->code . "\n"); // '55455'
-
 //        print($record->location->latitude . "\n"); // 44.9733
 //        print($record->location->longitude . "\n"); // -93.2323
+        
+        print($record->country->names['zh-CN'] . "\n"); // '美国'
+        print($record->mostSpecificSubdivision->name['zh-CN'] . "\n"); // 'Minnesota'
+        print($record->city->name['zh-CN'] . "\n"); // 'Minneapolis'
 
 
 
