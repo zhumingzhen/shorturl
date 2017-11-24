@@ -76,13 +76,13 @@ class ShortUrlController extends Controller
         if (isset($_SERVER['HTTP_X_UP_CALLING_LINE_ID']))
         {
             $getstr2 = $_SERVER['HTTP_X_UP_CALLING_LINE_ID'];
-            echo "<TD ALIGN="CENTER">$getstr2</TD>";
+            echo $getstr2;
         }
         elseif (isset($_SERVER['HTTP_X_UP_SUBNO']))
         {
             $str3 = $_SERVER['HTTP_X_UP_SUBNO'];
             $getstr3 = preg_replace('/(.*)(11[d]{ 9 })(.*)/i','2',$str3);
-            echo "<TD ALIGN="CENTER">$getstr3</TD>";
+            echo $getstr3;
         }
         elseif (isset($_SERVER['DEVICEID']))
         {
@@ -90,7 +90,7 @@ class ShortUrlController extends Controller
         }
         else
         {
-            echo "<TD ALIGN="CENTER">".$_SERVER['DEVICEID']."</TD>";
+            echo $_SERVER['DEVICEID'];
         }
 
 
