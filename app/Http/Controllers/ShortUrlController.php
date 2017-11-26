@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Shorturl;
 use GeoIp2\Database\Reader;
+use App\Models\Record;
 
 
 class ShortUrlController extends Controller
@@ -71,11 +72,18 @@ class ShortUrlController extends Controller
 
         $os = $this->get_os();  // 获取系统信息
 
+        $save['short_url']=$short;
+        $save['uv_cookie']=$uvcookie;
+        $save['ip']=$ip;
+        $save['isp']='';
+        $save['country']=$city['country'];
+        $save['province']=$city['province'];
+        $save['city']=$city['city'];
+        $save['browser']=$browser;
+        $save['os']=$os;
+        $createRes = Record::create($save);  // 如果save失败，返回false；如果成功，返回model。
 
-        dd(21);
-
-
-
+        
         /*
         // 短链转长链
         $short_to_long = Shorturl::where('short_url',$short)->first();

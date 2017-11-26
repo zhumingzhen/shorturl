@@ -23,7 +23,7 @@ class CreateRecordsTable extends Migration
             $table->string('province',26);
             $table->string('city',26);
             $table->string('browser',26);
-            $table->string('os',16);
+            $table->string('os',16);  // 忘添加唯一索引
             $table->timestamps();
         });
     }
