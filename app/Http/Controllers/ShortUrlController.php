@@ -71,7 +71,7 @@ class ShortUrlController extends Controller
 
         $os = $this->get_os();  // 获取系统信息
 
-        
+
         dd(21);
 
 
