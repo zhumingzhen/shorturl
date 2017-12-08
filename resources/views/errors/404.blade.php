@@ -85,7 +85,8 @@
                 {{--<div class="links">--}}
                     {{--<a href="/">回首页</a>--}}
                 {{--</div>--}}
-                <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone_v6/lostchild/search_children.js"></script>
+                {{--<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone_v6/lostchild/search_children.js"></script>--}}
+                <script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8" homePageUrl="/" homePageName="返回首页"></script>
             </div>
         </div>
     </body>
