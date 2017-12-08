@@ -59,6 +59,12 @@ class ShortUrlController extends Controller
 
     public function shorttolong($short)
     {
+        // 查询短链是否已存在
+        $short_is_having = Shorturl::where('short_url',$short)->first();
+        if (empty($short_is_having)) {
+            // 短链不存在
+            return response()->view('errors.404',[],404);
+        }
         // ****** 可以把 访问时间 ip 以及对应 短链记录到文件  每天0点执行定时任务 进行 数据库写入
         $ip = $this->getIp();  // 获取客户端ip
 
