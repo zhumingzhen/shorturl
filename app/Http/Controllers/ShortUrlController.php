@@ -83,7 +83,7 @@ class ShortUrlController extends Controller
         $save['os']=$os;
         $createRes = Record::create($save);  // 如果save失败，返回false；如果成功，返回model。
 
-        
+
         // 短链转长链
         $short_to_long = Shorturl::where('short_url',$short)->first();
         if ($short_to_long){
