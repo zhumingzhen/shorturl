@@ -85,6 +85,7 @@
                 <div class="links">
                     <a href="/">回首页</a>
                 </div>
+                <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone_v6/lostchild/search_children.js"></script>
             </div>
         </div>
     </body>
