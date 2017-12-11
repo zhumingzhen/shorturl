@@ -9,6 +9,10 @@
     <body>
         <div style="width: 800px;margin: 0 auto;text-align: center;color: #ccc;border-radius: 10px;">
             <div>
+                <h4>2017-12-06 v1.1.2</h4>
+                新增宝贝回家404页面以及错误跳转404
+            </div>
+            <div>
                 <h4>2017-11-15 v1.1</h4>
                 项目迁移优化(laravel)
             </div>
