@@ -19,6 +19,9 @@
         <span class="s-url" id="sUrl">http://2dw.win/url</span>
         <button class="copy-s-url copy" id="copySUrl" data-clipboard-text="http://2dw.win/url">复制短链</button>
     </div>
+    <div>
+        <img src="{!! QrCode::generate('Make me into a QrCode!') !!}">
+    </div>
     <!-- 作者 -->
     <div class="author">
         <a href="http://51growup.com" target="_blank">51growup.com-朱明振</a>
