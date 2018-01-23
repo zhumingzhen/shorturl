@@ -25,6 +25,10 @@
         <a href="/v" target="_blank" style="display: block;font-size: 14px;margin-top: 5px;">© 2017 2dw.win V1.1.2</a>
     </div>
 </div>
+// 统计代码
+<div style="display:none">
+    <script src="https://s19.cnzz.com/z_stat.php?id=1272821610&web_id=1272821610" language="JavaScript"></script>
+</div>
 </body>
 </html>
 
